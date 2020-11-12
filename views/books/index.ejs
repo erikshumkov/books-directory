@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/head.ejs") %>
+
+<body>
+  <header>
+    <div class="action-buttons container">
+      <button id="add">Add book</button>
+    </div>
+  </header>
+  <div class="container">
+
+      
+
+      <div class="booklist-header">
+        <h1>My Books</h1>
+        
+      </div>
+
+      <div class="booklist">
+        <% books.forEach(b => { %>
+        <div class="book">
+          <div class="book-info">
+            <p class="title">Title: <%= b.title %></p>
+            <p class="author">Author: <%= b.author %></p>
+            <p class="isbn">ISBN: <%= b.isbn %></p>
+          </div>
+          <div class="buttons">
+            <a class="edit" href="/books/update/?title=<%= b.title %>&author=<%= b.author %>&isbn=<%= b.isbn %>">Edit book</a>
+            <a class="delete" data-doc="<%= b._id %>">Delete Book</a>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+  </div>
+
+  <div class="overlay">
+    <div class="settings">
+      <div class="settings-content">
+        <div class="settings-header">
+          <h2>Add book to library</h2>
+          <span id="close">&times;</span>
+        </div>
+        <form id="book-form" action="/books" method="POST">
+          <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="u-full-width" required />
+          </div>
+          <div>
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" class="u-full-width" required />
+          </div>
+          <div>
+            <label for="isbn">ISBN#</label>
+            <input type="text" id="isbn" name="isbn" class="u-full-width" required />
+          </div>
+          <div>
+            <input type="submit" value="Add book" id="updatebtn" />
+          </div>
+        </form>
+      </div>
+  </div>
+  </div>
+
+  <script>
+    const booklist = document.querySelector(".booklist")
+    const add = document.querySelector("#add");
+    const close = document.querySelector("#close");
+    const overlay = document.querySelector(".overlay")
+
+    const deleteFn = async (url) => {
+      const response = await fetch(url, {
+          method: "DELETE"
+        })
+
+      if(response.status !== 200) {
+        throw new Error("Something went wrong with the data fetching..")
+      }
+
+      const data = await response.json();
+
+      return data;
+    }
+
+    document.addEventListener("click", (e) => {
+      if(e.target.id === "add") {
+        overlay.classList.add("fade");
+        overlay.style.visibility = "visible";
+        setTimeout(() => {
+          overlay.classList.remove("fade");
+        }, 400);
+      }
+
+      if(e.target.id === "close") {
+        overlay.classList.add("fade2");
+        setTimeout(() => {
+          overlay.style.visibility = "hidden";
+          overlay.classList.remove("fade2");
+        }, 600);
+      }
+
+      if(e.target.className === "overlay") {
+        overlay.classList.add("fade2");
+        setTimeout(() => {
+          overlay.style.visibility = "hidden";
+          overlay.classList.remove("fade2");
+        }, 600);
+      }
+    })
+
+    booklist.addEventListener("click", (e) => {
+      const target = e.target;
+
+      if (target.className === "delete") {
+        const url = `/books/delete/${target.dataset.doc}`
+        
+        deleteFn(url)
+          .then(data => {
+            window.location.href = data.redirect
+          })
+          .catch(err => console.log("Promise rejected:", err.message))
+      }
+    })
+  </script>
+</body>
+</html>
