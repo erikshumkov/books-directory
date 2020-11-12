@@ -5,7 +5,7 @@ const { render } = require("ejs")
 const bookRoutes = require("./routes/bookRoutes");
 
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@shumkov.bwm9p.mongodb.net/books-directory?retryWrites=true&w=majority`
 
