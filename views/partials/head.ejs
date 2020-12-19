@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -5,6 +7,42 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="/styles.css">  
   <title>Books Directory</title>
 </head>
+<body>
+    <% if (user) { %>
+    <header>
+      <div class="header-nav">
+        <div class="action-buttons">
+          <% if (route) { %>
+          <button id="home">
+            <i class="fas fa-home"></i>
+            <a href="/books">Books</a>
+          </button>
+          <% } else { %>
+          <button id="add">
+            <i class="fas fa-book"></i>
+            <span>Add book</span>
+          </button>
+          <% } %>
+        </div>
+  
+        <ul>
+            <li class="user">
+              <a href="/users/me">
+                <div class="profile">
+                  <i class="fas fa-user"></i>
+                </div>
+                <%= user.name %>
+              </a>
+            </li>
+            <li><a class="logout" href="/users/logout">Log out</a></li>
+            <% } else { %>  
+              <!-- <li><a href="/login">Log in</a></li>
+            <li><a href="/signup">Sign up</a></li> -->
+          <% } %>  
+        </ul>
+      </div>
+    </header>

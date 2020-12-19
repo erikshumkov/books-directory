@@ -1,0 +1,90 @@
+
+<div class="profile-actions">
+  <% if(path.split("/").pop() === "me") { %>
+  <a class="profile-nav selected" href="/users/me">
+    <i class="fas fa-user"></i>
+     Profile
+  </a>
+  <% } else { %>
+    <a class="profile-nav" href="/users/me">
+      <i class="fas fa-user"></i>
+       Profile
+    </a>
+  <% } %>
+  <% if(path.split("/").pop() === "edit") { %>
+    <a class="profile-nav selected" href="/users/me/edit">
+      <i class="fas fa-user"></i>
+       Edit Profile
+    </a>
+    <% } else { %>
+      <a class="profile-nav" href="/users/me/edit">
+        <i class="fas fa-user"></i>
+        Edit Profile
+      </a>
+    <% } %>
+    <% if(path.split("/").pop() === "newpass") { %>
+      <a class="profile-nav selected" href="/users/me/newpass">
+        <i class="fas fa-key"></i>
+         New password
+      </a>
+      <% } else { %>
+        <a class="profile-nav" href="/users/me/newpass">
+          <i class="fas fa-key"></i>
+          New password
+        </a>
+      <% } %>
+  <a class="profile-nav del-acc">
+    <i class="fas fa-user-slash"></i>
+     Delete account
+  </a>
+</div>
+
+<div class="overlay delete-modal">
+  <div class="modal">
+    <div class="modal-content">
+      <h4>Do you really want to delete your account?</h4>
+      <div class="action-buttons">
+        <p class="edit">Confirm</p>
+        <p class="delete">Cancel</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const deleteBtn = document.querySelector(".del-acc")
+const overlay = document.querySelector(".overlay")
+const confirm = document.querySelector(".edit")
+const cancel = document.querySelector(".delete")
+
+const deleteFn = async (url) => {
+  const response = await fetch(url, {
+    method: "DELETE"
+  })
+
+  if (response.status !== 200) {
+    throw new Error("Something went wrong with the data fetching..")
+  }
+
+  const data = await response.json();
+
+  return data;
+}
+
+document.addEventListener("click", async (e) => {
+  if (e.target.className.includes("del-acc")) {
+    overlay.style.visibility = "visible"
+  }
+
+  if (e.target.className.includes("edit")) {
+    await deleteFn("/users/me")
+    overlay.style.visibility = "hidden"
+    location.assign("/login")
+  }
+
+  if (e.target.className.includes("delete") || e.target.className.includes("overlay")) {
+    overlay.style.visibility = "hidden"
+  }
+
+})
+</script>

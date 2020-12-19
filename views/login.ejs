@@ -1,0 +1,45 @@
+<%- include("./partials/head.ejs") %>
+
+  <div class="form-container">
+    <div class="login-form">
+      <form class="form" action="/users/login">
+        <h3 class="page-heading">Sign in</h3>
+      <input class="input"
+            type="text"
+            autocomplete="off"
+            id="email"
+            name="email"
+            placeholder="Email"
+            autofocus
+          />
+          <input class="input"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+      <button class="loginBtn loginPage" type="submit">Sign in</button>
+  
+      <p class="err-msg"></p>
+    </form>
+    <div class="no-account">
+      <p>Not a member yet?</p>
+      <a href="/signup" class="login">
+        Sign up now
+      </a>
+    </div>
+    </div>
+  <div class="side-image">
+    <div class="img">
+      <h1>
+        Books Directory
+      </h1>
+      <!-- <p>Store books to read</p> -->
+    </div>
+  </div>
+</div>
+
+<script src="/js/login.js"></script>
+
+</body>
+</html>

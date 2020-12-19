@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <%- include("../partials/head.ejs") %>
 
-<body>
-  <header>
-    <div class="action-buttons container">
-      <button id="add">Add book</button>
-    </div>
-  </header>
   <div class="container">
     <div class="booklist-header">
       <h1>My Books</h1>
@@ -20,6 +11,7 @@
             <p class="title">Title: <%= b.title %></p>
             <p class="author">Author: <%= b.author %></p>
             <p class="isbn">ISBN: <%= b.isbn %></p>
+            <p class="date">Added: <span><%= b.updatedAt %></span></p>
           </div>
           <div class="buttons">
             <a class="edit" href="/books/update/?title=<%= b.title %>&author=<%= b.author %>&isbn=<%= b.isbn %>">Edit book</a>
@@ -33,7 +25,7 @@
         <div class="settings">
           <div class="settings-content">
             <div class="settings-header">
-              <h2>Update book</h2>
+              <h2>Edit book</h2>
               <span id="close">&times;</span>
             </div>
             <form id="book-form" action="/books/update" method="POST">
@@ -50,7 +42,7 @@
                 <input type="text" id="isbn" name="isbn" class="u-full-width" value="<%= query.isbn %>" required />
               </div>
               <div>
-                <input type="submit" value="Update book" id="updatebtn" />
+                <input type="submit" value="Save" id="updatebtn" />
               </div>
             </form>
           </div>
@@ -59,102 +51,6 @@
 
       
   </div>
-  <script>
-    const booklist = document.querySelector(".booklist")
-    const add = document.querySelector("#add");
-    const overlay = document.querySelector(".overlay")
-
-    const updatebtn = document.querySelector("#updatebtn")
-    const title = document.querySelector("#title").value;
-    const form = document.getElementById("book-form")
-
-    const update = async () => {
-      const url = `/books/update/${title}`
-
-      const fd = new FormData(form)
-
-      const bodyvalues = {
-        title: fd.get("title"),
-        author: fd.get("author"),
-        isbn: fd.get("isbn")
-      }
-
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bodyvalues)
-      });
-
-      if(response.status !== 200) {
-        throw new Error("Something went wrong with the data fetching..")
-      }
-
-      const data = await response.json();
-
-      return data;
-    }
-
-    const deleteFn = async (url) => {
-      const response = await fetch(url, {
-          method: "DELETE"
-        })
-
-      if(response.status !== 200) {
-        throw new Error("Something went wrong with the data fetching..")
-      }
-
-      const data = await response.json();
-
-      return data;
-    }
-
-    updatebtn.addEventListener("click", (e) => {
-      e.preventDefault()
-      
-      update()
-        .then(data => {
-          window.location.href = data.redirect
-        })
-        .catch(err => console.log("Promise rejected:", err.message))
-    })
-
-    document.addEventListener("click", (e) => {
-      if(e.target.id === "add") {
-        overlay.style.visibility = "visible";
-      }
-
-      if(e.target.id === "close") {
-        overlay.classList.add("fade2");
-        setTimeout(() => {
-          overlay.style.visibility = "hidden";
-          overlay.classList.remove("fade2");
-          window.location.replace("/books");
-        }, 600);
-      }
-
-      if(e.target.className === "overlay") {
-        overlay.classList.add("fade2");
-        setTimeout(() => {
-          overlay.style.visibility = "hidden";
-          overlay.classList.remove("fade2");
-          window.location.replace("/books");
-        }, 600);
-      }
-    })
-
-    booklist.addEventListener("click", (e) => {
-      const target = e.target;
-
-      if (target.className === "delete") {
-        const url = `/books/delete/${target.dataset.doc}`
-        
-        deleteFn(url)
-          .then(data => {
-            window.location.href = data.redirect
-          })
-          .catch(err => console.log("Promise rejected:", err.message))
-      }
-    })
-  </script>
+  <script src="/js/update.js"></script>
 </body>
 </html>

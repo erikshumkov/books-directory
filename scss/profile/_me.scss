@@ -1,0 +1,132 @@
+.profile-box {
+  background: #fff;
+  padding: 30px;
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+  h4 {
+    font-weight: bold;
+  }
+  .profile-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+    .profile-pic {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f6f4ff;
+      // margin-right: 200px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      .no-pic {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        i {
+          font-size: 50px;
+          color: #222;
+          margin-bottom: 5px;
+        }
+        span {
+          font-weight: bold;
+          color: #222;
+        }
+      }
+    }
+    .profile-text {
+      width: 50%;
+      p {
+        display: flex;
+        background: #fff;
+        padding: 17px 25px;
+        border-radius: 7px;
+        margin: 0;
+        .profile-label {
+          font-weight: normal;
+          width: 50%;
+        }
+        .profile-values {
+          font-weight: bold;
+          width: 40%;
+        }
+      }
+      p:nth-of-type(odd) {
+        background: #f6f4ff;
+      }
+    }
+  }
+  .profile-actions {
+    display: flex;
+    margin-top: 35px;
+    .profile-nav {
+      width: 140px;
+      text-align: center;
+    }
+    .del-acc {
+      cursor: pointer;
+    }
+    .profile-nav {
+      margin-bottom: 10px;
+      background: #fff;
+      color: #333;
+      font-weight: 600;
+      padding-bottom: 15px;
+      text-decoration: none;
+      border-bottom: 3px solid #fff;
+      margin-right: 10px;
+      &:hover {
+        border-bottom: 3px solid #a684e7;
+      }
+      i {
+        color: #333;
+      }
+    }
+    .selected {
+      border-bottom: 3px solid #b994ff;
+      color: #222;
+      &:hover {
+        border-bottom: 3px solid #a684e7;
+      }
+    }
+  }
+}
+
+.profile-label {
+  font-weight: bold;
+}
+
+.overlay.delete-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0%;
+  left: 0%;
+  background: rgba(0, 0, 0, 0);
+}
+
+.modal {
+  background: #fff;
+  padding: 50px 50px 25px;
+  border-radius: 5px;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+  &-content {
+    display: flex;
+    flex-direction: column;
+    h4 {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      .edit {
+        margin-right: 5px;
+      }
+      .delete {
+        margin-left: 5px;
+      }
+    }
+  }
+}

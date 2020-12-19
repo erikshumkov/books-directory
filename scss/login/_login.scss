@@ -1,0 +1,125 @@
+/* Login form */
+.page-heading {
+  font-weight: bold;
+  margin: 40px 0;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: #fff;
+  .login-form {
+    align-self: center;
+    width: 500px;
+    margin: 20px auto 50px;
+  }
+}
+
+form.login {
+  width: 500px;
+  margin: 70px auto 20px;
+}
+
+form.form {
+  max-width: 700px;
+}
+
+input.input {
+  display: block;
+  padding: 20px 16px;
+  font-size: 16px;
+  margin: 25px auto;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1.5px solid #f9f9f9;
+  background: #f3f3f4;
+  outline: none;
+  transition: 0.3s ease all;
+  &:hover {
+    background: #fff;
+    box-shadow: 0px 0px 8px 2px rgba(185, 148, 255, 0.35);
+  }
+  &:focus {
+    background: #fff;
+    box-shadow: 0px 0px 8px 2px rgba(185, 148, 255, 0.35);
+  }
+}
+
+.loginBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 50px;
+  width: 100%;
+  background: #673ab7;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 25px 0;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.2s ease background-color;
+  &:hover {
+    color: #fff;
+    background: #9160e6;
+  }
+  &:focus {
+    color: #fff;
+    text-decoration: underline;
+    background: #9160e6;
+  }
+}
+
+.loginBtn.loginPage {
+  width: initial;
+  padding: 20px 80px;
+  font-size: 15px;
+}
+
+.no-account {
+  display: flex;
+  .login {
+    display: inline;
+    text-decoration: none;
+    margin-left: 5px;
+    color: #7a30ee;
+  }
+}
+
+.side-image {
+  width: 100%;
+  height: 100vh;
+
+  .img {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+        rgba(103, 58, 183, 0.6),
+        rgba(81, 45, 168, 0.6),
+        rgba(103, 58, 183, 0.6)
+      ),
+      url('https://images.pexels.com/photos/3747474/pexels-photo-3747474.jpeg?cs=srgb&dl=pexels-polina-zimmerman-3747474.jpg&fm=jpg')
+        center center no-repeat;
+    background-size: cover;
+
+    h1 {
+      width: 80%;
+      font-weight: 500;
+      margin-top: 80px;
+      font-size: 35px;
+    }
+    p {
+      width: 80%;
+      font-weight: 700;
+      font-size: 25px;
+    }
+  }
+}

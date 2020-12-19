@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+
+@import 'navigation/nav';
+@import 'login/login';
+@import 'profile/me';
+@import 'profile/edit';
+
+body {
+  background: #f9f9f9;
+  // padding-bottom: 100px;
+}
+
+.booklist-header h1 {
+  font-size: 25px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  color: #6c7e91;
+}
+
+.booklist {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px 20px;
+}
+
+.book {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  color: rgb(59, 59, 59);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease box-shadow;
+  width: 100%;
+}
+
+.book-info {
+  margin-bottom: 35px;
+}
+
+.book-info p {
+  margin: 0;
+}
+
+.book .buttons {
+  margin-bottom: 10px;
+}
+
+.book .title {
+  color: #102d4c;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.book .author {
+  color: #7e8e9f;
+  font-size: 14px;
+}
+
+.book .isbn {
+  color: #7e8e9f;
+  font-size: 14px;
+}
+
+.book:hover {
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+.delete {
+  color: #9a9ba0;
+  background: #f9f9f9;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  border: 1px solid #f9f9f9;
+}
+
+.delete:hover {
+  color: #9a9ba0;
+  cursor: pointer;
+  border: 1px solid #9a9ba0;
+}
+
+.edit {
+  color: #fff;
+  background: #b994ff;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.edit:hover {
+  color: #fff;
+  background: #ad87f3;
+  cursor: pointer;
+}
+
+.overlay {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.overlay .settings {
+  position: fixed;
+  transform: translateY(50px);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  color: rgb(59, 59, 59);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease box-shadow;
+  width: 600px;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.overlay .settings .settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#close {
+  font-size: 35px;
+  font-weight: 600;
+  color: #7e8e9f;
+  cursor: pointer;
+}
+
+.overlay .settings .settings-content .settings-buttons {
+  margin-top: 1.5rem;
+}
+
+.overlay .settings .settings-content .settings-buttons button {
+  position: relative;
+  padding: 0.9rem 1.7rem;
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  outline: 0;
+  cursor: pointer;
+  background: rgb(255, 129, 131);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 129, 131, 1) 0%,
+    rgba(248, 101, 109, 1) 100%
+  );
+}
+
+.overlay .settings .settings-content .settings-buttons button#default {
+  margin: 0 0.8rem;
+}
+
+.overlay .settings .settings-content h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.overlay .settings .settings-content .settings-time {
+  margin-top: 1.2rem;
+}
+
+.overlay .settings .settings-content .settings-time h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.overlay .settings .settings-content .settings-time .times {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1.8rem;
+}
+
+.overlay .settings .settings-content .settings-time .times .pomodoro,
+.short-break,
+.long-break {
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay .settings .settings-content .settings-time .times .pomodoro,
+.short-break,
+.long-break label {
+  font-size: 0.9rem;
+}
+
+.overlay .settings .settings-content,
+input {
+  font-size: 16px;
+  color: #222;
+}
+
+.overlay .settings .settings-content,
+label {
+  color: #102d4c;
+}
+
+.overlay .settings .settings-content .settings-volume {
+  margin-top: 0.8rem;
+}
+
+.overlay .settings .settings-content .settings-volume h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.overlay .settings .settings-content .settings-volume #volume {
+  width: 100%;
+  overflow-y: hidden;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid rgb(194, 194, 194);
+}
+
+#updatebtn {
+  color: #fff;
+  background: #b994ff;
+  margin: 10px 0 0;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 15px;
+}
+
+#updatebtn:hover {
+  color: #fff;
+  background: #ad87f3;
+  cursor: pointer;
+}
+
+input[type='email']:focus,
+input[type='number']:focus,
+input[type='search']:focus,
+input[type='text']:focus,
+input[type='tel']:focus,
+input[type='url']:focus,
+input[type='password']:focus,
+textarea:focus,
+select:focus {
+  border: 1.5px solid #b994ff;
+}
+
+.overlay.fade {
+  animation: fade 0.3s forwards;
+}
+
+.overlay.fade2 {
+  animation: fade2 0.3s 0.3s forwards;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade2 {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

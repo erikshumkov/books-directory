@@ -1,0 +1,24 @@
+<%- include("./partials/head.ejs") %>
+
+<div class="container">
+  <div class="profile-box">
+    <h4>My Profile</h4>
+    <%- include("./partials/profile-nav.ejs") %>
+    <div class="profile-info">
+      <div class="profile-pic">
+        <div class="no-pic">
+          <i class="fas fa-user"></i>
+          <span>No pic yet</span>
+        </div>
+      </div>
+      <div class="profile-text">
+        <p><span class="profile-label">Name</span> <span class="profile-values"><%= user.name %></span></p>
+        <p><span class="profile-label">Age</span> <span class="profile-values"><%= user.age %></span></p>
+        <p><span class="profile-label">Email</span> <span class="profile-values"><%= user.email %></span></p>
+        <p><span class="profile-label">Role</span> <span class="profile-values">User</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("./partials/footer.ejs") %>

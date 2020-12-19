@@ -1,0 +1,42 @@
+<%- include("./partials/head.ejs") %>
+
+<div class="container">
+  <div class="profile-box">
+  <h4 class="edit-heading">Edit Profile</h4>
+  <%- include("./partials/profile-nav.ejs") %>
+  <form class="form form-edit">
+    <input class="input"
+    type="text" 
+    name="name"
+    autocomplete="off"
+    id="name"
+    placeholder="Your name"
+    value="<%= user.name %>"
+    >
+    <input class="input"
+          type="text"
+          autocomplete="off"
+          id="age"
+          name="age"
+          placeholder="Your age"
+          value="<%= user.age %>"
+        />
+    <input class="input"
+          type="text"
+          autocomplete="off"
+          id="email"
+          name="email"
+          placeholder="Email"
+          value="<%= user.email %>"
+        />
+        <p class="err-msg"></p>
+      <button class="loginBtn" type="submit">Save changes</button>
+      <button class="loginBtn cancelBtn"><a href="/users/me">Cancel</a></button>
+  </form>
+</div>
+</div>
+
+<script src="/js/edit.js"></script>
+
+
+<%- include("./partials/footer.ejs") %>

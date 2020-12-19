@@ -1,0 +1,57 @@
+<%- include("./partials/head.ejs") %>
+
+
+  <div class="form-container">
+    <div class="login-form">
+      <form class="form" action="/users">
+        <h3 class="page-heading">Sign up</h3>
+    <input class="input"
+    type="text" 
+    name="name"
+    autocomplete="off"
+    id="name"
+    placeholder="Your name (optional)"
+    autofocus
+    >
+    <input class="input"
+          type="text"
+          autocomplete="off"
+          id="age"
+          name="age"
+          placeholder="Your age (optional)"
+        />
+    <input class="input"
+          type="text"
+          autocomplete="off"
+          id="email"
+          name="email"
+          placeholder="Email* (required)"
+        />
+        <input class="input"
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password* (required)"
+      />
+      <button class="loginBtn loginPage" type="submit">Create Account</button>
+      <p class="err-msg"></p>
+  </form>
+  <div class="no-account">
+    <p>Already a member?</p>
+    <a href="/login" class="login">Sign In</a>
+  </div>
+</div>
+<div class="side-image">
+  <div class="img">
+    <h1>
+      Books Directory
+    </h1>
+    <p>Store books to read</p>
+  </div>
+</div>
+</div>
+
+<script src="/js/signup.js"></script>
+
+</body>
+</html>
