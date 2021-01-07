@@ -1,0 +1,19 @@
+<%- include("./partials/head.ejs") %>
+
+  <div class="container">
+      <div class="booklist-header">
+        <h1>Upload Image</h1>
+      </div>
+
+      <div class="profile-box">
+        <h4 class="edit-heading">New Password</h4>
+        <form class="form form-edit" action="/uploadphoto" enctype="multipart/form-data" method="POST">
+            <input type="file" name="myImage" accept="image/*">
+            <button class="loginBtn" type="submit">Upload photo</button>
+        </form>
+      </div>
+  </div>
+
+  <!-- <script src="/js/booksIndex.js"></script> -->
+</body>
+</html>

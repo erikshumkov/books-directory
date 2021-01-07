@@ -44,7 +44,7 @@
     <div class="modal-content">
       <h4>Do you really want to delete your account?</h4>
       <div class="action-buttons">
-        <p class="edit">Confirm</p>
+        <p class="edit confirm">Confirm</p>
         <p class="delete">Cancel</p>
       </div>
     </div>
@@ -54,7 +54,7 @@
 <script>
   const deleteBtn = document.querySelector(".del-acc")
 const overlay = document.querySelector(".overlay")
-const confirm = document.querySelector(".edit")
+const confirm = document.querySelector(".confirm")
 const cancel = document.querySelector(".delete")
 
 const deleteFn = async (url) => {
@@ -76,7 +76,7 @@ document.addEventListener("click", async (e) => {
     overlay.style.visibility = "visible"
   }
 
-  if (e.target.className.includes("edit")) {
+  if (e.target.className.includes("confirm")) {
     await deleteFn("/users/me")
     overlay.style.visibility = "hidden"
     location.assign("/login")

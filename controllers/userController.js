@@ -1,6 +1,8 @@
 const User = require("../models/user")
 const { validationResult } = require("express-validator")
 const bcrypt = require("bcryptjs")
+const sharp = require("sharp")
+const multer = require("multer")
 
 const user_details = async (req, res) => {
   const user = req.user
@@ -17,7 +19,29 @@ const user_newpassword_get = async (req, res) => {
   res.render("newpass", { user, route: "profile", path: req.path })
 }
 
+const user_avatar_get = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+
+    if (!user || !user.avatar) {
+      throw new Error()
+    }
+
+    res.set("Content-Type", "image/png")
+    res.send(user.avatar)
+  } catch (e) {
+    res.status(404).send()
+  }
+}
+
 const user_create_post = async (req, res) => {
+
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() })
+  }
+
   const user = new User(req.body)
 
   try {
@@ -30,8 +54,17 @@ const user_create_post = async (req, res) => {
   }
 }
 
+// const user_add_avatar_post = 
+
 const user_login_post = async (req, res) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() })
+  }
+
   const { email, password } = req.body
+
   try {
     const user = await User.findOne({ email })
     const token = await user.generateAuthToken()
@@ -79,6 +112,12 @@ const user_delete = async (req, res) => {
   }
 }
 
+const user_avatar_delete = async (req, res) => {
+  req.user.avatar = undefined
+  await req.user.save()
+  res.send()
+}
+
 const user_logout_get = async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter(token => token.token !== req.token)
@@ -112,5 +151,7 @@ module.exports = {
   user_edit_patch,
   user_logout_get,
   user_login_post,
-  user_logoutAll_get
+  user_logoutAll_get,
+  user_avatar_delete,
+  user_avatar_get
 }

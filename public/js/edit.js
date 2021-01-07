@@ -1,5 +1,6 @@
-const form = document.querySelector("form")
+const form = document.querySelector(".form-info")
 const errorMessage = document.querySelector(".err-msg")
+const removeBtn = document.querySelector(".removeBtn")
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault()
@@ -21,11 +22,24 @@ form.addEventListener("submit", async (e) => {
       headers: { "Content-Type": "application/json" }
     })
     const data = await res.json()
-    console.log(data)
     if (data.user) {
       location.assign("/users/me")
     }
   } catch (e) {
     console.log(e)
+  }
+})
+
+removeBtn.addEventListener("click", async (e) => {
+  try {
+    const res = await fetch("/users/me/avatar", {
+      method: "DELETE"
+    })
+    const data = await res
+    if (data) {
+      location.assign("/users/me")
+    }
+  } catch (e) {
+    console.error(e);
   }
 })

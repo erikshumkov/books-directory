@@ -4,13 +4,14 @@
   <div class="profile-box">
   <h4 class="edit-heading">Edit Profile</h4>
   <%- include("./partials/profile-nav.ejs") %>
-  <form class="form form-edit">
+
+  <form class="form form-edit form-info">
     <input class="input"
     type="text" 
     name="name"
     autocomplete="off"
     id="name"
-    placeholder="Your name"
+    placeholder="Your name (Optional)"
     value="<%= user.name %>"
     >
     <input class="input"
@@ -18,7 +19,7 @@
           autocomplete="off"
           id="age"
           name="age"
-          placeholder="Your age"
+          placeholder="Your age (Optional)"
           value="<%= user.age %>"
         />
     <input class="input"
@@ -28,8 +29,13 @@
           name="email"
           placeholder="Email"
           value="<%= user.email %>"
+          minlength="6"
+          required
         />
         <p class="err-msg"></p>
+        <% if (user.avatar) { %>
+          <button class="loginBtn removeBtn">Remove avatar</button>
+        <% } %>
       <button class="loginBtn" type="submit">Save changes</button>
       <button class="loginBtn cancelBtn"><a href="/users/me">Cancel</a></button>
   </form>

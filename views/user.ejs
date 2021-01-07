@@ -6,10 +6,16 @@
     <%- include("./partials/profile-nav.ejs") %>
     <div class="profile-info">
       <div class="profile-pic">
+        
+        <% if (!user.avatar) { %>
         <div class="no-pic">
           <i class="fas fa-user"></i>
-          <span>No pic yet</span>
-        </div>
+          <span>Add avatar here</span>
+        </div> <% } else { %>
+        <img id="avatar" src="/users/<%= user._id %>/avatar" alt="The users profile picture" title="Click to add new picture">
+        <% } %>  
+
+
       </div>
       <div class="profile-text">
         <p><span class="profile-label">Name</span> <span class="profile-values"><%= user.name %></span></p>
@@ -20,5 +26,45 @@
     </div>
   </div>
 </div>
+
+<form class="form form-edit form-photo" 
+        action="/users/me/avatar" 
+        method="POST"
+        enctype="multipart/form-data"
+        style="display: none;">
+
+    <input 
+          type="file" 
+          name="avatar"
+          id="upload"
+          onchange="form.submit()"
+          >
+          
+  </form>
+
+<script>
+  const profilePic = document.querySelector(".profile-pic")
+
+  const simulateClick = (elem) => {
+	// Create our event (with options)
+	const event = new MouseEvent('click', {
+		bubbles: true,
+		cancelable: true,
+		view: window
+	});
+	// If cancelled, don't dispatch our event
+	const canceled = !elem.dispatchEvent(event);
+};
+
+  profilePic.addEventListener("click", (e) => {
+
+    if(e.target.className === "profile-pic" ||
+        e.target.id === "avatar") {
+      const fileupload = document.querySelector('input#upload')
+      simulateClick(fileupload)  
+    }
+  })
+
+</script>
 
 <%- include("./partials/footer.ejs") %>

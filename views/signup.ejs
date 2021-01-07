@@ -26,15 +26,19 @@
           id="email"
           name="email"
           placeholder="Email* (required)"
+          minlength="6"
+          required
         />
         <input class="input"
         type="password"
         name="password"
         id="password"
         placeholder="Password* (required)"
+        minlength="7"
+        required
       />
       <button class="loginBtn loginPage" type="submit">Create Account</button>
-      <p class="err-msg"></p>
+      <p class="err-msg" style="color: #ffffff;">message</p>
   </form>
   <div class="no-account">
     <p>Already a member?</p>
@@ -46,7 +50,8 @@
     <h1>
       Books Directory
     </h1>
-    <p>Store books to read</p>
+    <p>Store your favorite books<br />
+      and books you want to read</p>
   </div>
 </div>
 </div>

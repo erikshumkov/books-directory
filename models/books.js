@@ -10,8 +10,12 @@ const booksSchema = new Schema({
     type: String,
     required: true
   },
-  isbn: {
-    type: Number
+  rating: {
+    type: Number,
+    default: 0
+  },
+  imgURL: {
+    type: String
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,

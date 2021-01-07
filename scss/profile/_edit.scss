@@ -1,14 +1,14 @@
-// h4.edit-heading {
-//   max-width: 700px;
-//   margin: auto;
-// }
-
 .form-edit {
   margin: auto;
   padding-bottom: 50px;
   .loginBtn {
     margin-bottom: 0;
   }
+}
+
+.form-photo {
+  margin: 50px auto 40px;
+  padding-bottom: 0;
 }
 
 .loginBtn.cancelBtn {
@@ -20,5 +20,17 @@
   }
   &:hover {
     border: 1px solid #9a9ba0;
+  }
+}
+
+.loginBtn.removeBtn {
+  background: #64c8aa;
+  border: 1px solid #a9edd9;
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  &:hover {
+    background: #64d8b3;
   }
 }

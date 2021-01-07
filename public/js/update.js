@@ -9,12 +9,16 @@ const bookDate = document.querySelectorAll(".date span")
 const update = async () => {
   const url = `/books/update/${title}`
 
-  const fd = new FormData(form)
+  const title = form.title.value
+  const author = form.author.value
+  const rating = form.rating.value
+  const isbn = form.isbn.value
 
   const bodyvalues = {
-    title: fd.get("title"),
-    author: fd.get("author"),
-    isbn: fd.get("isbn")
+    title,
+    author,
+    rating,
+    isbn
   }
 
   const response = await fetch(url, {

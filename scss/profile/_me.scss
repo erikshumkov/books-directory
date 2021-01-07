@@ -19,11 +19,15 @@
       width: 200px;
       height: 200px;
       border-radius: 50%;
+      &:hover {
+        cursor: pointer;
+      }
       .no-pic {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        pointer-events: none;
         i {
           font-size: 50px;
           color: #222;
@@ -32,6 +36,16 @@
         span {
           font-weight: bold;
           color: #222;
+        }
+      }
+      img {
+        width: 93%;
+        height: 93%;
+        object-fit: contain;
+        border-radius: 50%;
+        &:hover {
+          cursor: pointer;
+          transform: scale(0.95);
         }
       }
     }

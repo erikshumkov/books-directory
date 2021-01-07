@@ -1,0 +1,142 @@
+.rating-box {
+  margin-top: 10px;
+  i.fas.fa-star {
+    color: #ffc107;
+    font-size: 20px;
+    margin-right: 5px;
+  }
+  i.fas.fa-star.grey {
+    color: #dadada;
+  }
+}
+
+.rating-modal {
+  i.fas.fa-star {
+    cursor: pointer;
+    &:hover {
+      color: #ffc107;
+    }
+  }
+}
+
+.search-container {
+  margin-bottom: 30px;
+}
+
+.booklist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 40px;
+  h1 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+  }
+  span {
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
+}
+
+.book {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  background: #fff;
+  // padding: 20px;
+  border-radius: 10px;
+  color: rgb(59, 59, 59);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease box-shadow;
+  width: 100%;
+  .book-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: lightgrey;
+    height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: #fff;
+    i {
+      font-size: 50px;
+    }
+    .img-container {
+      width: 175px;
+      height: 175px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+  .book-info {
+    margin-bottom: 20px;
+    padding: 10px 20px 0;
+    p {
+      margin: 0;
+    }
+  }
+  .title {
+    color: #102d4c;
+    font-weight: bold;
+    font-size: 21px;
+  }
+  .author {
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .buttons {
+    display: none;
+    margin: 5px 0 10px;
+    padding: 0 20px 20px;
+  }
+  &:hover {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.delete {
+  color: #9a9ba0;
+  background: #eeeeee;
+  text-decoration: none;
+  margin-left: 5px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  border: 1px solid #f9f9f9;
+}
+
+.delete:hover {
+  color: #9a9ba0;
+  cursor: pointer;
+  border: 1px solid #9a9ba0;
+}
+
+.edit {
+  color: #fff;
+  background: #b994ff;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.edit:hover {
+  color: #fff;
+  background: #ad87f3;
+  cursor: pointer;
+}
+
+.err::placeholder {
+  color: red;
+}
+
+.err {
+  border-color: red !important;
+}

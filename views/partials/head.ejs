@@ -18,8 +18,10 @@
         <div class="action-buttons">
           <% if (route) { %>
           <button id="home">
-            <i class="fas fa-home"></i>
-            <a href="/books">Books</a>
+            <a href="/books">
+              <i class="fas fa-home"></i>
+              <span>Books</span>
+            </a>
           </button>
           <% } else { %>
           <button id="add">
@@ -27,22 +29,31 @@
             <span>Add book</span>
           </button>
           <% } %>
+
+          <% if (route !== "search") { %>
+            <button id="search-nav">
+              <a href="/books/search/"><i class="fas fa-search"></i> Search</a>
+            </button>
+            <% } %>  
         </div>
-  
+        
         <ul>
             <li class="user">
               <a href="/users/me">
                 <div class="profile">
-                  <i class="fas fa-user"></i>
+
+                  <% if (!user.avatar) { %>
+                    <i class="fas fa-user"></i>
+                  <% } else { %>
+                    <img src="/users/<%= user._id %>/avatar" alt="Profile picture">
+                  <% } %>  
+
                 </div>
                 <%= user.name %>
               </a>
             </li>
-            <li><a class="logout" href="/users/logout">Log out</a></li>
-            <% } else { %>  
-              <!-- <li><a href="/login">Log in</a></li>
-            <li><a href="/signup">Sign up</a></li> -->
-          <% } %>  
+            <li><a class="logout" href="/users/logout">Sign out <i class="fas fa-door-open"></i></a></li>
+            <% } %>  
         </ul>
       </div>
     </header>

@@ -1,0 +1,80 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  #query {
+    border: none;
+    width: 500px;
+    padding: 20px 30px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  }
+  #search {
+    position: absolute;
+    right: 250px;
+    top: 11px;
+    border: none;
+    background: #b994ff;
+    color: #fff;
+    &:hover {
+      background: #a07ae6;
+    }
+  }
+}
+
+.booklist-header.search {
+  justify-content: center;
+  h1.search-heading {
+    display: block;
+    color: #333;
+    font-size: 33px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.toast {
+  position: fixed;
+  top: 40px;
+  right: 50%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: #43d787; //#43d787
+  color: #fff;
+  padding: 16px 30px;
+  transform: translateX(50%);
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translate(50%, -130%);
+  }
+
+  100% {
+    transform: translateY(50%, 10%);
+  }
+}
+
+@keyframes jump2 {
+  0% {
+    transform: translate(50%, 10%);
+  }
+
+  100% {
+    transform: translate(50%, -130%);
+  }
+}

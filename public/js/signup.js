@@ -37,17 +37,21 @@ form.addEventListener("submit", async (e) => {
         if (data.errors.email) {
           form.email.style.borderColor = "red"
           msg = `${data.errors.email.message}`;
+        } else {
+          form.email.style.borderColor = "lightgreen"
         }
 
         if (data.errors.password) {
           form.password.style.borderColor = "red"
           msg += ` ${data.errors.password.message}`
+        } else {
+          form.password.style.borderColor = "lightgreen"
         }
 
+        errorMessage.style.color = "red"
+        form.email.style.borderColor = "red"
         errorMessage.textContent = msg;
       }
-
-      form.email.style.borderColor = "lightgreen"
 
       if (res.status !== 201) {
         throw new Error("Something went wrong with the data fetching..")

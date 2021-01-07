@@ -13,7 +13,8 @@ form.addEventListener("submit", async (e) => {
 
   const email = form.email.value
   const password = form.password.value
-  errorMessage.textContent = ""
+  errorMessage.style.color = "#fff"
+  errorMessage.textContent = "message"
 
   try {
     const res = await fetch("/users/login", {

@@ -2,21 +2,48 @@
 
   <div class="container">
       <div class="booklist-header">
-        <h1>My Books</h1>
+        <h1>My Library</h1>
+        <span id="edit-state">Edit / Remove <i class="fas fa-pen"></i></span>
       </div>
 
       <div class="booklist">
         <% books.forEach(b => { %>
         <div class="book">
+
+          <% if (!b.imgURL) { %>
+            <div class="book-image" style="background-color: #eeeeee;">
+              <i class="fas fa-image"></i>
+            </div>
+            <% } else { %>
+            <div class="book-image">
+              <div class="img-container">
+                <img src="<%= b.imgURL  %>" alt="Image of <%= b.title %>">
+              </div>
+            </div>
+            <% } %>
+
+
           <div class="book-info">
-            <p class="title">Title: <%= b.title %></p>
-            <p class="author">Author: <%= b.author %></p>
-            <p class="isbn">ISBN: <%= b.isbn %></p>
-            <p class="date">Added: <span><%= b.updatedAt %></span></p>
+            <p class="title"><%= b.title %></p>
+            <p class="author">By <%= b.author %></p>
+            <div class="rating-box">
+              <% for(let i = 0; i < (b.rating); i++ ) { %>
+                <i class="fas fa-star"></i>
+              <% } %>
+              <% for(let i = 0; i < (maxRating - b.rating); i++ ) { %>
+                <i class="fas fa-star grey"></i>
+              <% } %>
+            </div>
           </div>
           <div class="buttons">
-            <a class="edit" href="/books/update/?title=<%= b.title %>&author=<%= b.author %>&isbn=<%= b.isbn %>">Edit book</a>
-            <a class="delete" data-doc="<%= b._id %>">Delete Book</a>
+            <a class="edit">
+              <i class="fas fa-pencil-alt"></i>
+              Edit
+            </a>
+            <a class="delete" data-doc="<%= b._id %>">
+              <i class="fas fa-trash-alt"></i>
+              Remove
+            </a>
           </div>
         </div>
         <% }) %>
@@ -24,7 +51,7 @@
   </div>
 
   <div class="overlay">
-    <div class="settings">
+    <div class="settings" style="display: none;">
       <div class="settings-content">
         <div class="settings-header">
           <h2>Add book to library</h2>
@@ -33,15 +60,20 @@
         <form id="book-form" action="/books" method="POST">
           <div>
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" class="u-full-width" required />
+            <input type="text" id="title" name="title" placeholder="Book title (Required)" class="u-full-width" minlength="2" required />
           </div>
           <div>
             <label for="author">Author</label>
-            <input type="text" id="author" name="author" class="u-full-width" required />
+            <input type="text" placeholder="Author (Required)" id="author" name="author" class="u-full-width" minlength="2" required />
           </div>
           <div>
-            <label for="isbn">ISBN#</label>
-            <input type="text" id="isbn" name="isbn" class="u-full-width" required />
+            <label for="rating">Rating</label>
+            <input type="number" min="0" max="5" placeholder="Number, 0 to 5 (Required)" id="rating" name="rating" class="u-full-width" required />
+          </div>
+
+          <div>
+            <label for="imgURL">Image</label>
+            <input type="text" id="imgURL" name="imgURL" class="u-full-width" placeholder="Image URL address here. (Optional)" />
           </div>
           <div>
             <input type="submit" value="Add book" id="updatebtn" />
@@ -49,8 +81,43 @@
         </form>
       </div>
   </div>
+
+  <div class="settings2" style="display: none;">
+    <div class="settings-content">
+      <div class="settings-header">
+        <h2>Edit book</h2>
+        <span id="close">&times;</span>
+      </div>
+      <form id="edit-form">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="Book title (Required)" class="u-full-width" required />
+        </div>
+        <div>
+          <label for="author">Author</label>
+          <input type="text" placeholder="Author (Required)" id="author" name="author" class="u-full-width" pattern=".{2,}" title="2 characters minimum" required />
+        </div>
+        <div>
+          <label for="rating">Rating (0-5)</label>
+          <input type="number" min="0" max="5" placeholder="Has to be a number between 0 and 5" id="rating" name="rating" class="u-full-width" required />
+        </div>
+        <div>
+          <label for="imgURL">Image</label>
+          <input type="text" id="imgURL" name="imgURL" class="u-full-width" placeholder="Image URL address here. (Optional)" />
+        </div>
+        <div>
+          <input type="submit" value="Update Book" id="updatebook" />
+        </div>
+      </form>
+    </div>
+</div>
   </div>
 
-  <script src="/js/booksIndex.js"></script>
+  <div class="toast" style="display: none;">
+    <h4>Removed!</h4>
+    <p>The title have been removed from the library!</p>
+  </div>
+
+  <script src="/js/MyLibrary.js"></script>
 </body>
 </html>

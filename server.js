@@ -2,11 +2,13 @@ require("dotenv").config()
 const express = require("express")
 const mongoose = require("mongoose")
 const db = require("./db/db")
+const fs = require("fs")
 const { render } = require("ejs")
 const books = require("./routes/books")
 const user = require("./routes/user")
 const authRoutes = require("./routes/authRoutes")
 const cookieParser = require("cookie-parser")
+const multer = require("multer")
 const { checkUser } = require("./middleware/auth")
 
 const app = express()
@@ -22,7 +24,7 @@ app.set("view engine", "ejs")
 
 // middleware & static files
 app.use(express.static("public"))
-app.use(express.json())
+app.use(express.json({ extended: false }))
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
